@@ -1,39 +1,19 @@
-import {
-	USER,
-	REGISTER,
-	LOGIN,
-	AX_READ_LIST
-} from '../actionTypes';
+import * as user from './user';
+import * as ax from './ax';
+import * as read from './read';
+import * as praise from './praise';
+import * as comment from './comment';
+import * as userFollows from './userFollows';
+import * as collection from './collection';
 
-export function getUserList(data = {}){
-	return {
-		type: USER,
-		data
-	}
-}
-
-//注册
-export function register(data = {}){
-	return {
-		type: REGISTER,
-		data
-	}
-}
-
-//登录
-export function login(data = {}){
-	return {
-		type: LOGIN,
-		data
-	}
-}
-
-//获取阅读记录
-export function getReadList(readList = []){
-	return {
-		type: AX_READ_LIST,
-		readList
-	}
+export {
+	user,
+	ax,
+	read,
+	praise,
+	comment,
+	userFollows,
+	collection,
 }
 
 

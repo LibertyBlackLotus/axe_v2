@@ -4,14 +4,13 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
 import Home from '../navigation/HomeNavigator';
-import Axe from '../navigation/AxeNavigator';
+import Ax from '../navigation/AxNavigator';
 import My from '../navigation/MyNavigator';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
 export default function BottomTabNavigator({navigation, route}) {
-	// navigation.setOptions({headerTitle: getHeaderTitle(route)});
 	return (
 		<BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}
 							 tabBarOptions={{
@@ -22,13 +21,15 @@ export default function BottomTabNavigator({navigation, route}) {
 				name="Home"
 				component={Home}
 				options={{
+					title: '首页',
 					tabBarIcon: ({focused}) => <TabBarIcon focused={focused} name="home"/>,
 				}}
 			/>
 			<BottomTab.Screen
 				name="Axe"
-				component={Axe}
+				component={Ax}
 				options={{
+					title: '斧头',
 					tabBarIcon: ({focused}) =>
 						<MaterialCommunityIcons name="axe"
 												size={25}
@@ -39,6 +40,7 @@ export default function BottomTabNavigator({navigation, route}) {
 				name="My"
 				component={My}
 				options={{
+					title: '我的',
 					tabBarIcon: ({focused}) => <TabBarIcon focused={focused} name="user"/>,
 				}}
 			/>

@@ -15,8 +15,21 @@ class AxService extends BaseService{
 	 */
 	async find(option = {}){
 		return await this.model.find(option).sort({create_time: -1})
+			             .populate('author', 'username nickname avatar')
 			             .populate('cate', 'title content')
 			             .populate('community', 'name');
+	}
+
+	/**
+	 * 查询 populate
+	 * @param {Object} option 查询参数
+	 * @return {Array} 查询结果
+	 */
+	async findById(_id = 0){
+		return await this.model.findOne({_id}).sort({create_time: -1})
+			.populate('author', 'username nickname avatar')
+			.populate('cate', 'title content')
+			.populate('community', 'name');
 	}
 
 }

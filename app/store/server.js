@@ -1,7 +1,7 @@
 import axios from 'axios';
-import config from './config';
+import {baseUrl} from './config';
 
-axios.defaults.baseURL = config.baseUrl;  //base url
+axios.defaults.baseURL = baseUrl;  //base url
 
 //请求前统一处理
 axios.interceptors.request.use( async config => {

@@ -1,5 +1,7 @@
-export default {
-	baseUrl: 'http://192.168.8.133:10241/api/'
+const baseUrl = 'http://192.168.8.133:10241/api/';
+
+export{
+	baseUrl
 }
 
 

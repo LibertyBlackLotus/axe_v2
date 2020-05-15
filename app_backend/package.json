@@ -11,7 +11,8 @@
     "egg": "^2.15.1",
     "egg-jwt": "^3.1.7",
     "egg-mongoose": "^3.2.0",
-    "egg-scripts": "^2.11.0"
+    "egg-scripts": "^2.11.0",
+    "image-size": "^0.8.3"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -29,7 +30,7 @@
     "start": "egg-scripts start --daemon --title=egg-server-axe",
     "stop": "egg-scripts stop --title=egg-server-axe",
     "dev": "egg-bin dev --port 10241",
-    "debug": "egg-bin debug",
+    "debug": "egg-bin debug --inpsect=10241",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",

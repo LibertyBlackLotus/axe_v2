@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import http from '../store/server';
-import {
-	login,
-} from '../store/actions';
+import { user } from '../store/actions';
 
 import {
 	API_USER
@@ -20,9 +18,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		/* 登录 */
 		login: (data) => {
-			console.log(' login container--->', data );
 			return http({method: 'POST', url: API_USER + '/login', data}).then(res => {
-				dispatch(login(res));
+				dispatch(user.login(res));
 				return Promise.resolve(res);
 			});
 		}

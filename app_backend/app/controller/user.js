@@ -34,7 +34,7 @@ class UserController extends BaseController{
 			userInfo: user,
 			token: app.jwt.sign({
 				data: user._id,
-				exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 3), //设置 token 过期时间: 3d
+				exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7), //设置 token 过期时间: 7d
 			}, app.config.jwt.secret)
 		};
 	}
@@ -46,8 +46,6 @@ class UserController extends BaseController{
 	async login(){
 		const { ctx, app } = this;
 		const {username, password} = ctx.request.body;
-		console.log('----username--->', username);
-		console.log('----password--->', password);
 		if (!username || !password) {
 			throw new InvalidQueryError();
 		}
@@ -62,7 +60,7 @@ class UserController extends BaseController{
 			userInfo: user,
 			token: app.jwt.sign({
 				data: user._id,
-				exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 3), //设置 token 过期时间: 3d
+				exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7), //设置 token 过期时间: 7d
 			}, app.config.jwt.secret)
 		}
 	}

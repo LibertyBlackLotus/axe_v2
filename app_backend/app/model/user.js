@@ -16,6 +16,9 @@ module.exports = app => {
 			type: Schema.Types.ObjectId,
 			ref: 'Weixin'
 		},
+		location: { //位置
+			type: String,
+		},
 		nickname: {  // 昵称
 			type: String,
 			default: '用户' + new Date().getTime()

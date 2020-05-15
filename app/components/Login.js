@@ -34,7 +34,10 @@ class Login extends React.Component{
 			if(res){
 				global.storeData('userInfo', res.userInfo).then(data => {
 					global.storeData('token', res.token);
-					this.props.navigation.navigate('BottomTabNavigator', {screen: 'Home'});
+					console.log('after login---->', this.props.route );
+					console.log('after login--navigation-->', this.props.navigation );
+					// this.props.navigation.navigate('BottomTabNavigator', {screen: 'Home'});
+					this.props.navigation.goBack();
 				});
 			}
 		});

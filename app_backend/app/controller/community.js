@@ -1,6 +1,7 @@
 'use strict';
 
 const BaseController = require('../base/BaseController');
+const { InvalidQueryError, CommonError } = require('../base/error');
 
 class CommunityController extends BaseController {
 	constructor(model) {

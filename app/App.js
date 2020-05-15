@@ -3,12 +3,9 @@ import {Platform, StatusBar, StyleSheet, View, AsyncStorage } from 'react-native
 import {SplashScreen} from 'expo';
 import * as Font from 'expo-font';
 import {Ionicons} from '@expo/vector-icons';
-import {createStackNavigator} from '@react-navigation/stack';
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
 import AppNavigator from './navigation/AppNavigator';
-const Stack = createStackNavigator();
 const store = configureStore();
 
 global.storeData = async (item, value) => {

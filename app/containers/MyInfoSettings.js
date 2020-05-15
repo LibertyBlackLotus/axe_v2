@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import http from '../store/server';
 import {
-	modifyUserInfo
+	user
 } from '../store/actions';
 
 import {
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 		/* 更换头像 */
 		modifyUserInfo: (data) => {
 			return http({method: 'PUT', url: API_USER  + `/${data._id}`, data}).then(res => {
-				dispatch(modifyUserInfo(res));
+				dispatch(user.modifyUserInfo(res));
 				return Promise.resolve(res);
 			});
 		}

@@ -9,8 +9,7 @@ module.exports = app => {
 			required: true
 		},
 		title: { // 标题
-			type: String,
-			required: true
+			type: String
 		},
 		author: { // 作者
 			type: Schema.Types.ObjectId,
@@ -42,6 +41,10 @@ module.exports = app => {
 			default: 0
 		},
 		praises: {   //点赞数
+			type: Number,
+			default: 0
+		},
+		comments: {   //评论数
 			type: Number,
 			default: 0
 		},

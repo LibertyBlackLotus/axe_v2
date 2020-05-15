@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Home from '../components/Home';
+import Home from '../containers/Home';
 import Colors from '../constants/Colors'
-import TabBarIcon from "../components/TabBarIcon";
 const Stack = createStackNavigator();
 
 class HomeNavigator extends Component {
@@ -24,6 +23,7 @@ class HomeNavigator extends Component {
 							  options={{
 								  title: '首页',
 							  }} />
+
 			</Stack.Navigator>
 		);
 	}
