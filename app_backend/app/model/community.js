@@ -11,7 +11,6 @@ module.exports = app => {
 		cate: {  //分类
 			type: Schema.Types.ObjectId,
 			ref: 'Cate',
-			required: true
 		},
 		content: { // 社区描述
 			type: String

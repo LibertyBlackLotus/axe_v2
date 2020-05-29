@@ -2,6 +2,7 @@ import {
 	USER,
 	REGISTER,
 	LOGIN,
+	LOGOUT,
 	AX_READ_LIST,
 	USER_INFO,
 	USER_MODIFY
@@ -26,6 +27,14 @@ export function register(data = {}){
 export function login(data = {}){
 	return {
 		type: LOGIN,
+		data
+	}
+}
+
+//退出登录
+export function logout(data = {}){
+	return {
+		type: LOGOUT,
 		data
 	}
 }

@@ -7,7 +7,7 @@ module.exports = app => {
 	router.put('/api/user/:id', jwt, controller.user.update);  // 修改用户信息
 	router.resources('/api/user', controller.user);            // 用户
 	router.resources('/api/cate', controller.cate);            // 分类
-	router.get('/api/community/cate/:cate', controller.community.communityCate); // 获取分类下的社区列表
+	router.get('/api/community/cate/:id', controller.community.communityCate); // 获取分类下的社区列表
 	router.post('/api/community/search', controller.community.communitySearch);  // 搜索社区
 	router.put('/api/community/:id', jwt, controller.community.update);          // 修改社区信息
 	router.resources('/api/community', controller.community);             // 社区

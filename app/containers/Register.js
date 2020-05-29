@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import http from '../store/server';
 import {
-	register,
+	user,
 } from '../store/actions';
 
 import {
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 		/* 注册 */
 		register: (data) => {
 			return http({method: 'POST', url: API_USER, data}).then(res => {
-				dispatch(register(res));
+				dispatch(user.register(res));
 				return Promise.resolve(res);
 			});
 		}

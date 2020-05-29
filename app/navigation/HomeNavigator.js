@@ -22,6 +22,7 @@ class HomeNavigator extends Component {
 							  component={Home}
 							  options={{
 								  title: '首页',
+								  headerShown: false
 							  }} />
 
 			</Stack.Navigator>

@@ -5,6 +5,8 @@ import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
 import Home from '../navigation/HomeNavigator';
 import Ax from '../navigation/AxNavigator';
+import CommunityNavigator from '../navigation/CommunityNavigator';
+import TopicNavigator from '../navigation/TopicNavigator';
 import My from '../navigation/MyNavigator';
 
 const BottomTab = createBottomTabNavigator();
@@ -26,6 +28,17 @@ export default function BottomTabNavigator({navigation, route}) {
 				}}
 			/>
 			<BottomTab.Screen
+				name="CommunityNavigator"
+				component={CommunityNavigator}
+				options={{
+					title: '社区',
+					tabBarIcon: ({focused}) =>
+						<MaterialCommunityIcons name="group"
+												size={25}
+												color={focused ? Colors.tabIconSelected : Colors.tabIconDefault} />,
+				}}
+			/>
+			<BottomTab.Screen
 				name="Axe"
 				component={Ax}
 				options={{
@@ -37,26 +50,25 @@ export default function BottomTabNavigator({navigation, route}) {
 				}}
 			/>
 			<BottomTab.Screen
+				name="TopicNavigator"
+				component={TopicNavigator}
+				options={{
+					title: '话题',
+					tabBarIcon: ({focused}) =>
+						<MaterialCommunityIcons name="account-group"
+												size={25}
+												color={focused ? Colors.tabIconSelected : Colors.tabIconDefault} />,
+				}}
+			/>
+			<BottomTab.Screen
 				name="My"
 				component={My}
 				options={{
 					title: '我的',
 					tabBarIcon: ({focused}) => <TabBarIcon focused={focused} name="user"/>,
+					unmountOnBlur: true
 				}}
 			/>
 		</BottomTab.Navigator>
 	);
 }
-
-// function getHeaderTitle(route) {
-// 	const routeName = route.state ?. routes[route.state.index] ?. name ?? INITIAL_ROUTE_NAME;
-//
-// 	switch (routeName) {
-// 		case 'Home':
-// 			return '首页';
-// 		case 'Axe':
-// 			return '斧头';
-// 		case 'My':
-// 			return '我的';
-// 	}
-// }

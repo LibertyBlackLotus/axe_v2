@@ -16,8 +16,8 @@ module.exports = appInfo => {
 	// use for cookie sign key, should change to your own and keep security
 	config.keys = appInfo.name + '_1587707909594_4559';
 
-	config.baseURL = 'http://192.168.8.133:10241/';
-	config.imgURL = 'http://192.168.8.133:10241/public';
+	config.baseURL = 'http://192.168.8.133:1024/';
+	config.imgURL = 'http://192.168.8.133:1024/public';
 
 	// add your middleware config here
 	config.middleware = [

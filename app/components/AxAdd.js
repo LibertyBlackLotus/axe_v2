@@ -1,16 +1,21 @@
 import React from 'react';
 import {
 	View,
-	Text,
-	ScrollView,
 	StyleSheet,
 	Image,
 	Alert,
-	TextInput
+	TextInput,
+	Text
 } from 'react-native';
 import {
 	Button
 } from 'react-native-elements';
+import {
+	Menu,
+	MenuOptions,
+	MenuOption,
+	MenuTrigger,
+} from 'react-native-popup-menu';
 import PropTypes from 'prop-types';
 import * as ImagePicker from 'expo-image-picker';
 import {getUserId} from '../utils';
@@ -26,18 +31,19 @@ class AxAdd extends React.Component {
 			author: '',
 			title: '',
 			content: '',
-			cate: '5e704d38c941b8f208a5c264',
-			community: '5e707298f000d3cbb4b08d75'
+			community: null,
+			communityText: ''
 		}
 		this.pickImage = this.pickImage.bind(this);
 		this.publishAx = this.publishAx.bind(this);
-		// this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.handleContentChange = this.handleContentChange.bind(this);
+		this.selectCommunity = this.selectCommunity.bind(this);
 	}
 
 	async componentDidMount() {
 		let author = await getUserId();
 		this.setState({author});
+		this.props.getCommunityList();
 	}
 
 	//选择图片
@@ -57,13 +63,6 @@ class AxAdd extends React.Component {
 		}
 	}
 
-	//添加标题
-	// handleTitleChange(text){
-	// 	this.setState({
-	// 		title: text
-	// 	});
-	// }
-
 	//添加内容
 	handleContentChange(text){
 		this.setState({
@@ -71,9 +70,17 @@ class AxAdd extends React.Component {
 		});
 	}
 
+	//选择社区
+	selectCommunity(item){
+		this.setState({
+			community: item._id,
+			communityText: item.name,
+		});
+	}
+
 	//发布
 	publishAx() {
-		let { title, content, author, cate, community, image } = this.state;
+		let { title, content, author, community, image } = this.state;
 		if(!image){
 			Alert.alert(
 				'请添加图片'
@@ -83,6 +90,12 @@ class AxAdd extends React.Component {
 		if(!content){
 			Alert.alert(
 				'请填写内容'
+			);
+			return;
+		}
+		if(!community){
+			Alert.alert(
+				'请选择社区'
 			);
 			return;
 		}
@@ -97,7 +110,7 @@ class AxAdd extends React.Component {
 			method: 'POST',
 			body: form
 		}).then((res) => {return res.json()}).then((res) => {
-			console.log( 'fetch res--->', JSON.stringify(res) );
+			this.setState({image: null, communityText: ''});
 			let ax = {url: res.url, width: res.width, height: res.height};
 			let params = {
 				ax,
@@ -105,12 +118,12 @@ class AxAdd extends React.Component {
 				content,
 				author,
 				state: 1,
-				cate,
 				community
 			};
 			this.props.addAx(params).then(res => {
-				this.props.navigation.navigate('Ax');
+				// this.props.navigation.navigate('Home');
 			});
+			this.props.navigation.navigate('Home');
 		}).catch((e) => {
 			alert(e)
 		});
@@ -122,7 +135,8 @@ class AxAdd extends React.Component {
 	}
 
 	render() {
-		let {image, title, content} = this.state;
+		let {communityList} = this.props;
+		let {image, content, communityText} = this.state;
 		return (
 			<View style={styles.content}>
 
@@ -142,24 +156,32 @@ class AxAdd extends React.Component {
 					</TextInput>
 				</View>
 
-				{/*<View class="selectItemContent">*/}
-				{/*</View>*/}
-				{/*<View class="selectItem">*/}
-				{/*</View>*/}
+				<Menu style={styles.menuContent}>
+					<MenuTrigger text={`选择社区 ${communityText}`} />
+					<MenuOptions>
+						{communityList &&
+							communityList.map(item => (
+								<MenuOption key={item._id}
+											text={item.name}
+											onSelect={() => this.selectCommunity(item)}  />
+							))
+						}
+					</MenuOptions>
+				</Menu>
 
 				<View style={styles.publishButtonContainer} >
 					<Button title="发布" onPress={this.publishAx} buttonStyle={styles.publishButton} />
 				</View>
-
-
 			</View>
 		);
 	}
 }
 
 AxAdd.propTypes = {
-	axListUser: PropTypes.array, //用户斧头列表
-	addAx: PropTypes.func,       //创建斧头
+	axListUser: PropTypes.array,       //用户斧头列表
+	communityList: PropTypes.array,    //社区列表
+	addAx: PropTypes.func,             //创建斧头
+	getCommunityList: PropTypes.func,  //获取社区列表
 }
 
 const styles = StyleSheet.create({
@@ -179,6 +201,11 @@ const styles = StyleSheet.create({
 	publishButton: {
 		width: 350,
 		backgroundColor: Colors.tintColor
+	},
+	menuContent: {
+		padding: 10,
+		height: 50,
+
 	}
 });
 

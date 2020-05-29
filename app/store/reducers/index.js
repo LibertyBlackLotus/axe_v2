@@ -7,6 +7,8 @@ import praise from './praise';
 import comment from './comment';
 import userFollows from './userFollows';
 import collection from './collection';
+import cate from './cate';
+import community from './community';
 
 export default combineReducers({
 	user,
@@ -16,4 +18,6 @@ export default combineReducers({
 	comment,
 	userFollows,
 	collection,
+	cate,
+	community,
 });

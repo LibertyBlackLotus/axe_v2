@@ -44,7 +44,10 @@ class MyInfoSettings extends Component {
 	logout(){
 		global.removeValue('userInfo');
 		global.removeValue('token');
-		this.props.navigation.navigate('LoginNavigator');
+		this.props.logout();
+		this.props.navigation.reset({
+			routes: [{ name: 'LoginNavigator' }],
+		});
 	}
 
 	//选择头像
@@ -193,7 +196,9 @@ class MyInfoSettings extends Component {
 }
 
 MyInfoSettings.propTypes = {
-	modifyUserInfo: PropTypes.func //更换头像
+	modifyUserInfo: PropTypes.func, //更换头像
+	logout: PropTypes.func //退出登录
+
 };
 
 const styles = StyleSheet.create({

@@ -5,6 +5,8 @@ import * as praise from './praise';
 import * as comment from './comment';
 import * as userFollows from './userFollows';
 import * as collection from './collection';
+import * as cate from './cate';
+import * as community from './community';
 
 export {
 	user,
@@ -14,6 +16,8 @@ export {
 	comment,
 	userFollows,
 	collection,
+	cate,
+	community,
 }
 
 

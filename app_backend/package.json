@@ -9,6 +9,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "egg": "^2.15.1",
+    "egg-alinode": "^2.0.1",
     "egg-jwt": "^3.1.7",
     "egg-mongoose": "^3.2.0",
     "egg-scripts": "^2.11.0",
@@ -27,10 +28,10 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-axe",
+    "start": "egg-scripts start --port=1024 --daemon --title=egg-server-axe",
     "stop": "egg-scripts stop --title=egg-server-axe",
-    "dev": "egg-bin dev --port 10241",
-    "debug": "egg-bin debug --inpsect=10241",
+    "dev": "egg-bin dev --port 1024",
+    "debug": "egg-bin debug --inpsect=1024",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",

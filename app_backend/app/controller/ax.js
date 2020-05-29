@@ -96,7 +96,7 @@ class AxController extends BaseController{
 		let reg = new RegExp(keywords, 'i'); //不区分大小写
 		const result = await this.service.find({
 			$or : [ //多条件，数组 模糊查询
-				{title : {$regex : reg}},
+				// {title : {$regex : reg}},
 				{content : {$regex : reg}}
 			]
 		});

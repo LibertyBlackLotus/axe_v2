@@ -10,7 +10,7 @@ import Home from '../components/Home';
 
 const mapStateToProps = (state) => {
 	return {
-		axList: state.ax.axList,     //所有斧头列表
+		axList: state.ax.axList,             //所有斧头列表
 	}
 }
 

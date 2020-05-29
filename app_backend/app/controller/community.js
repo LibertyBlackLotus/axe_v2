@@ -16,11 +16,11 @@ class CommunityController extends BaseController {
 	 */
 	async communityCate() {
 		const {ctx} = this;
-		const {cate} = ctx.params;
-		if (!cate) {
+		const {id} = ctx.params;
+		if (!id) {
 			throw new InvalidQueryError();
 		}
-		const result = await this.service.find({status: 1, cate});
+		const result = await this.service.find({status: 1, cate: id});
 		if (!result) {
 			throw new CommonError('获取列表失败', 500);
 		}

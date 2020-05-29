@@ -26,7 +26,8 @@ module.exports = app => {
 		},
 		community: {  //社区
 			type: Schema.Types.ObjectId,
-			ref: 'Community'
+			ref: 'Community',
+			required: true
 		},
 		state: { //0:草稿, 1:已发布, 2:已撤销
 			type: Number,

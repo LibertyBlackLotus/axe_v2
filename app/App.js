@@ -6,6 +6,7 @@ import {Ionicons} from '@expo/vector-icons';
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 import AppNavigator from './navigation/AppNavigator';
+import { MenuProvider } from 'react-native-popup-menu';
 const store = configureStore();
 
 global.storeData = async (item, value) => {
@@ -75,7 +76,9 @@ export default function App(props) {
 			<View style={styles.container}>
 				{Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
 				<Provider store={store}>
-					<AppNavigator />
+					<MenuProvider>
+						<AppNavigator />
+					</MenuProvider>
 				</Provider>
 			</View>
 		);

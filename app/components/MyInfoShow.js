@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
 	},
 	bgImage: {
 		width: width,
-		height: 250,
+		height: 200,
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 	}

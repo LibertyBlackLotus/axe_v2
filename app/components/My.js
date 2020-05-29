@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Button, Text} from 'react-native';
-import PropTypes from 'prop-types';
 import MyInfoShow from './MyInfoShow';
-import MyInfoRead from '../containers/MyInfoRead';
-import MyInfoAx from './MyInfoAx';
-import {getUserInfo, getUserId} from '../utils';
+import Ax from '../containers/Ax';
+import {
+	getUserInfo,
+	getUserId
+} from '../utils';
 
 class My extends React.Component{
 	constructor(props) {
@@ -16,6 +16,7 @@ class My extends React.Component{
 	}
 
 	componentDidMount(){
+		console.log('---componentDidMount---props-->', this.props );
 		let params = this.props.route.params;
 		if(params){
 			this.setState({userId: params.id});
@@ -23,20 +24,11 @@ class My extends React.Component{
 		this.checkUserInfo();
 	}
 
-	componentDidUpdate(prevProps, prevState){
-		let preId = prevState.userId;
-		let nowId = this.state.userId;
-		if (nowId !== preId) {
-			this.checkUserInfo();
-		}
-	}
-
 	async checkUserInfo(){
 		let userInfo = await getUserInfo();
 		let userId = await getUserId();
-		console.log('checkUserInfo---userInfo-->', userInfo);
 		if(!userInfo){
-			this.props.navigation.navigate('LoginNavigator');
+			this.props.navigation.reset('LoginNavigator');
 		}
 		this.setState({userInfo, userId});
 	}
@@ -45,6 +37,7 @@ class My extends React.Component{
 		return (
 			<>
 				<MyInfoShow userInfo={this.state.userInfo} {...this.props}></MyInfoShow>
+				<Ax {...this.props}></Ax>
 			</>
 		);
 	}

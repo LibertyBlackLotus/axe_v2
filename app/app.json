@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "app",
+    "name": "斧头",
     "slug": "app",
     "platforms": [
       "ios",
@@ -16,6 +16,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "sdkVersion": "21.0.0",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -24,6 +25,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.lin.axe"
     }
   }
 }

@@ -8,7 +8,7 @@ import {
 	View
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { ListItem } from 'react-native-elements'
+import { ListItem } from 'react-native-elements';
 import {getUserId} from '../utils';
 
 const {	width } = Dimensions.get('window');

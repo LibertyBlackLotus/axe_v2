@@ -79,7 +79,7 @@ class UserMainPage extends React.Component{
 				<View style={styles.avatarContent}>
 					<Image style={styles.avatar}
 						   source={uri} />
-					<Text style={styles.username}>{data.username}</Text>
+					<Text style={styles.username}>{data.nickname? data.nickname: data.username}</Text>
 					{id != userId && (
 						isFollowed?
 						<Button title="已关注" onPress={this.removeFollowed} />:

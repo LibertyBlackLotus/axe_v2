@@ -1,18 +1,34 @@
 import React from 'react';
-import { View, Button, TextInput} from 'react-native';
+import {
+	View,
+	StyleSheet,
+	Dimensions,
+	TextInput,
+	ImageBackground
+} from 'react-native';
+import {
+	Button
+} from 'react-native-elements';
+// import * as WeChat from 'react-native-wechat';
 import PropTypes from 'prop-types';
+import Colors from "../constants/Colors";
+const {width, height} = Dimensions.get('window');
 
 class Login extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			textValue: '',
+			weixinLogo: require('../assets/weixin.png'),
+			loginBg: require('../assets/images/login.jpg')
 		};
 		this.handleUsernameChange = this.handleUsernameChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.loginMethod = this.loginMethod.bind(this);
 		this.toRegister = this.toRegister.bind(this);
+		this.weixinLogin = this.weixinLogin.bind(this);
 	}
 
 	handleUsernameChange(text){
@@ -34,10 +50,9 @@ class Login extends React.Component{
 			if(res){
 				global.storeData('userInfo', res.userInfo).then(data => {
 					global.storeData('token', res.token);
-					console.log('after login---->', this.props.route );
-					console.log('after login--navigation-->', this.props.navigation );
-					// this.props.navigation.navigate('BottomTabNavigator', {screen: 'Home'});
-					this.props.navigation.goBack();
+					this.props.navigation.reset({
+						routes: [{ name: 'BottomTabNavigator' }],
+					});
 				});
 			}
 		});
@@ -47,30 +62,84 @@ class Login extends React.Component{
 		this.props.navigation.navigate('Register');
 	}
 
+	//微信登录
+	weixinLogin(){
+		console.log('weixin login');
+		// let installed = WeChat.isWXAppInstalled();
+		// console.log('installed---->', installed );
+	}
+
 	render(){
+		let { loginBg } = this.state;
 		return (
-			<View>
-				<TextInput
-					name="username"
-					value={this.state.username}
-					onChangeText={text => this.handleUsernameChange(text)}
-					placeholder="用户名"
-				/>
-				<TextInput
-					name="password"
-					value={this.state.password}
-					onChangeText={text => this.handlePasswordChange(text)}
-					placeholder="密码"
-				/>
-				<Button title="登录" onPress={this.loginMethod} />
-				<Button title="注册" onPress={this.toRegister} />
-			</View>
+			<ImageBackground source={loginBg} style={styles.bgImage}>
+				<View style={styles.content}>
+					<TextInput
+						placeholder={'用户名'}
+						name="username"
+						value={this.state.username}
+						onChangeText={text => this.handleUsernameChange(text)}
+					/>
+					<TextInput
+						placeholder={'密码'}
+						name="password"
+						value={this.state.password}
+						onChangeText={text => this.handlePasswordChange(text)}
+					/>
+					<Button title="登录"
+							type={"outline"}
+							onPress={this.loginMethod}
+							titleStyle={styles.buttonViewTitle}
+							buttonStyle={styles.buttonView} />
+					<Button title="注册"
+							onPress={this.toRegister}
+							type={"outline"}
+							buttonStyle={styles.buttonView1} />
+
+				</View>
+			</ImageBackground>
+
 		);
 	}
 }
 
 Login.propTypes = {
-	data: PropTypes.object, //用户信息
-	login: PropTypes.func,  //登录
+	data: PropTypes.object,   //用户信息
+	login: PropTypes.func,    //登录
 }
+const styles = StyleSheet.create({
+	bgImage: {
+		width: width,
+		height: height + 40,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	content: {
+		width: 260,
+		height: 500
+	},
+	weixinLogo: {
+		alignItems: 'center',
+		marginBottom: 50
+	},
+	weixinLogoImg: {
+		width: 60,
+		height: 60,
+		marginBottom: 10
+	},
+	buttonViewContainer: {
+		marginTop: 20
+	},
+	buttonView: {
+		marginTop: 20,
+		borderColor: Colors.tintColor,
+	},
+	buttonViewTitle: {
+		color: Colors.tintColor,
+	},
+	buttonView1: {
+		marginTop: 20,
+		width: 50
+	}
+});
 export default Login;

@@ -23,7 +23,6 @@ class LoginNavigator extends Component {
 				<Stack.Screen name="Login"
 							  component={Login}
 							  options={{
-								  title: '登录',
 								  headerShown: false
 							  }}/>
 				<Stack.Screen name="Register"

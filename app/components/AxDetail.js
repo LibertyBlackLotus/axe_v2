@@ -57,6 +57,10 @@ class AxDetail extends React.Component{
 		}
 	}
 
+	componentWillUnmount() {
+
+	}
+
 	//操作
 	handleMethod(method){
 		console.log('handleMethod-->', method);
@@ -105,9 +109,10 @@ class AxDetail extends React.Component{
 	}
 
 	render(){
+		let showImg = null;
 		const { axDetail, isPraised, commentList, isCollected } = this.props;
 		let {avatar} = this.state;
-		let showImg;
+
 		let ax = axDetail&& axDetail.ax[0];
 		if(ax){
 			let axUrl = ax? {uri: ax.url}: this.state.axDefault;
@@ -134,7 +139,7 @@ class AxDetail extends React.Component{
 								/>
 								<View style={styles.axInfoAvatarText}>
 									<Text>
-										{axDetail.author.username?axDetail.author.username: axDetail.author.nickname}
+										{axDetail.author.nickname?axDetail.author.nickname: axDetail.author.username}
 									</Text>
 								</View>
 

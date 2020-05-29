@@ -61,9 +61,6 @@ class Ax extends React.Component {
 						</View>
 					}
 				</ScrollView>
-				<View style={styles.addAx}>
-					<Button title="创建斧头" onPress={this.toAxAdd} color={Colors.tintColor}/>
-				</View>
 			</View>
 
 		);
@@ -77,20 +74,22 @@ Ax.propTypes = {
 
 const styles = StyleSheet.create({
 	content: {
-		height: 500,
+		height: 200,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
 	axContent: {
 		flexDirection: 'row',
-		flexWrap: 'wrap'
+		flexWrap: 'wrap',
 	},
 	axImgView: {
-		padding: 5
+		padding: 5,
+
 	},
 	axImg: {
 		width: width / 3 - 10,
-		height: height / 3 - 10
+		height: height / 3 - 20,
+		borderRadius: 8
 	},
 	addAx: {
 		flexDirection: 'row',

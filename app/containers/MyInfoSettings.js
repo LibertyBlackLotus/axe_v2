@@ -23,7 +23,13 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(user.modifyUserInfo(res));
 				return Promise.resolve(res);
 			});
-		}
+		},
+
+		/* 退出登录 */
+		logout: () => {
+			dispatch(user.logout());
+		},
+
 	}
 }
 

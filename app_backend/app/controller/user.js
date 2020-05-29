@@ -51,7 +51,7 @@ class UserController extends BaseController{
 		}
 		const user = await this.service.findOne({username});
 		if (!user) {
-			throw new NotFoundError('用户不存在');
+			throw new InvalidQueryError('用户不存在');
 		}
 		if (!bcrypt.compareSync(password, user.password)) {
 			throw new InvalidQueryError('密码错误');
